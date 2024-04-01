@@ -1,0 +1,62 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true,
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "airbnb",
+    "airbnb/hooks",
+    "airbnb-typescript",
+    "prettier",
+  ],
+  "overrides": [],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": ["./tsconfig.json"],
+  },
+  "plugins": ["react", "@typescript-eslint"],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/function-component-definition": [
+      2,
+      { "namedComponents": ["arrow-function", "function-declaration"] },
+    ],
+    "@typescript-eslint/no-unused-vars": [
+      "warn", // or "error"
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_",
+      },
+    ],
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "variable",
+        "modifiers": ["unused"],
+        "format": ["strictCamelCase"],
+        "leadingUnderscore": "require",
+      },
+    ],
+    "react/require-default-props": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "jsx-a11y/no-noninteractive-tabindex": "off",
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {},
+    },
+  },
+  "ignorePatterns": [
+    "postcss.config.js",
+    "tsconfig.json",
+    "webpack.config.js",
+    "tailwind.config.js",
+  ],
+}

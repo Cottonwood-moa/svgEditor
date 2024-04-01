@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+html {
+  overflow: hidden;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background: lightgray;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: gray;
+}
+
+::-webkit-scrollbar-track {
+}
+
+#stencil {
+  .x6-widget-stencil {
+    height: 100vh;
+    background-color: #33363b;
+    .x6-widget-stencil-title {
+      background-color: #33363b;
+      color: white;
+      padding-left: 0;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      &::before {
+        display: none;
+      }
+    }
+
+    .x6-widget-stencil-content {
+      .x6-widget-stencil-group {
+        .x6-widget-stencil-group-title {
+          background-color: #33363b;
+          color: white;
+          padding-left: 0;
+          padding: 4px;
+          display: flex;
+          align-items: center;
+          &::before {
+            display: none;
+          }
+        }
+        .x6-widget-stencil-group-content {
+        }
+      }
+    }
+  }
+}
+
+.x6-widget-selection-box {
+  box-shadow: none;
+  display: none;
+}
+
+.x6-widget-transform {
+  border: 2px dashed royalblue;
+}
+
+/* 패널 컴포넌트 크기 */
+/* .x6-node-immovable {
+  width: 50px;
+  height: 50px;
+  foreignObject {
+    width: 50px !important;
+    height: 50px !important;
+  }
+} */
