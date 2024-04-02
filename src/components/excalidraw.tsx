@@ -1,14 +1,42 @@
-'use client';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { Excalidraw, Footer, MainMenu, Sidebar } from '@excalidraw/excalidraw';
-import { useState } from 'react';
+import { Excali }
+import { useEffect, useState } from 'react';
+// import Library from '@excalidraw/excalidraw/types/data/library';
+import LibraryItems from '../assets/sampleLibrary.json';
+
+const UIOptions = {
+  canvasActions: {
+    changeViewBackgroundColor: false,
+    clearCanvas: false,
+  },
+};
 
 function Diagram() {
   const [docked, setDocked] = useState(false);
+  const [libraryItems, setLibraryItems] = useState<any>();
+
+  useEffect(() => {
+    setLibraryItems(LibraryItems);
+  }, []);
+
+  useEffect(() => {
+    console.log('하이킥 libraryItems', libraryItems);
+  }, [libraryItems]);
+
   return (
     <div style={{ height: '100vh', width: '100vw' }}>
       <div className="absolute z-10">테스트</div>
-      <Excalidraw langCode="ko-KR">
+      <Excalidraw
+        langCode="ko-KR"
+        gridModeEnabled
+        theme="dark"
+        UIOptions={UIOptions}
+        initialData={{
+          libraryItems: libraryItems?.libraryItems,
+        }}
+      >
         <MainMenu>
           <MainMenu.DefaultItems.SaveAsImage />
           <MainMenu.DefaultItems.ToggleTheme />

@@ -154,9 +154,10 @@ export const initDiagram = (ref: HTMLDivElement) => {
       new Selection({
         enabled: true,
         multiple: true,
-        rubberband: true,
+        rubberband: false,
         movable: true,
         showNodeSelectionBox: true,
+        rubberNode: true,
       }),
     )
     .use(

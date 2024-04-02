@@ -15,7 +15,6 @@ function AntvX6() {
   };
 
   const exportSvg = () => {
-    console.log('하이킥 test', diagramData);
     diagramData?.exportSVG('test', {
       copyStyles: true,
       preserveDimensions: true,
@@ -57,6 +56,16 @@ function AntvX6() {
     });
   };
 
+  const enableRubberBand = () => {
+    diagramData?.enableRubberband();
+    diagramData?.disablePanning();
+  };
+
+  const enablePanning = () => {
+    diagramData?.enablePanning();
+    diagramData?.disableRubberband();
+  };
+
   useEffect(() => {
     console.log('하이킥 diagramData', diagramData);
   }, [diagramData]);
@@ -81,6 +90,18 @@ function AntvX6() {
             <span className="ml-3 text-lg font-bold">Antv x6</span>
           </a>
           <nav className="flex flex-wrap items-center justify-center text-base md:ml-auto">
+            <div
+              className="mr-5 cursor-pointer text-sm font-bold hover:text-gray-900"
+              onClick={enablePanning}
+            >
+              🖐️
+            </div>
+            <div
+              className="mr-5 cursor-pointer text-sm font-bold hover:text-gray-900"
+              onClick={enableRubberBand}
+            >
+              ⏹️
+            </div>
             <div
               className="mr-5 cursor-pointer text-sm font-bold hover:text-gray-900"
               onClick={appendSvgNode}
