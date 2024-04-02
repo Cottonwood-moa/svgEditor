@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Graph } from '@antv/x6';
 import { useEffect, useState } from 'react';
-import { initDiagram, initStencil } from 'utils/fabric/diagram';
+import { initDiagram } from 'utils/fabric/diagram';
 
 const useDiagram = (
   containerRef: React.MutableRefObject<HTMLDivElement | null>,
@@ -14,7 +14,7 @@ const useDiagram = (
     }
     const currentContainerRef = containerRef.current as HTMLDivElement;
     const diagram = initDiagram(currentContainerRef);
-    initStencil(diagram);
+    // initStencil(diagram);
     setGraph(diagram);
   }, [containerRef]);
 

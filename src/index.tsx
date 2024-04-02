@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RecoilRoot } from 'recoil';
 import { QueryClientProvider, QueryClient } from 'react-query';
+import { ThemeProvider } from "@material-tailwind/react";
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'styles/global.scss';
@@ -14,7 +15,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <RecoilRoot>
     <QueryClientProvider client={queryClient}>
-      <App />
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
     </QueryClientProvider>
   </RecoilRoot>,
 );

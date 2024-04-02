@@ -1,20 +1,14 @@
 'use client';
 
-import {
-  Excalidraw,
-  Footer,
-  MainMenu,
-  Sidebar,
-  WelcomeScreen,
-} from '@excalidraw/excalidraw';
+import { Excalidraw, Footer, MainMenu, Sidebar } from '@excalidraw/excalidraw';
 import { useState } from 'react';
 
 function Diagram() {
   const [docked, setDocked] = useState(false);
   return (
     <div style={{ height: '100vh', width: '100vw' }}>
+      <div className="absolute z-10">테스트</div>
       <Excalidraw langCode="ko-KR">
-        <WelcomeScreen />
         <MainMenu>
           <MainMenu.DefaultItems.SaveAsImage />
           <MainMenu.DefaultItems.ToggleTheme />
@@ -27,7 +21,6 @@ function Diagram() {
         Item 2
       </MainMenu.Item> */}
         </MainMenu>
-
         <Sidebar name="custom" docked={docked} onDock={setDocked}>
           <Sidebar.Header />
           <Sidebar.Tabs>
@@ -39,7 +32,6 @@ function Diagram() {
             </Sidebar.TabTriggers>
           </Sidebar.Tabs>
         </Sidebar>
-
         <Footer>
           <Sidebar.Trigger
             name="custom"

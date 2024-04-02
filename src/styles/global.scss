@@ -42,10 +42,7 @@ body {
 #stencil {
   .x6-widget-stencil {
     height: 100vh;
-    background-color: #33363b;
     .x6-widget-stencil-title {
-      background-color: #33363b;
-      color: white;
       padding-left: 0;
       padding: 4px;
       display: flex;
@@ -58,8 +55,6 @@ body {
     .x6-widget-stencil-content {
       .x6-widget-stencil-group {
         .x6-widget-stencil-group-title {
-          background-color: #33363b;
-          color: white;
           padding-left: 0;
           padding: 4px;
           display: flex;
@@ -74,10 +69,13 @@ body {
     }
   }
 }
+.x6-widget-selection-inner {
+  border: 2px solid royalblue;
+}
 
 .x6-widget-selection-box {
   box-shadow: none;
-  display: none;
+  opacity: 0;
 }
 
 .x6-widget-transform {
@@ -94,7 +92,9 @@ body {
   }
 } */
 
-/* Excalidraw */
-.library-menu-control-buttons {
-  display: none;
+/* Excalidraw custom style*/
+.library-menu-items-container__items {
+  .library-menu-items-container__header--excal {
+    display: none !important;
+  }
 }

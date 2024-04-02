@@ -1,21 +1,141 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-param-reassign */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Graph } from '@antv/x6';
+import { Graph, Shape } from '@antv/x6';
 import { Transform } from '@antv/x6-plugin-transform';
 import { Selection } from '@antv/x6-plugin-selection';
 // import { Snapline } from '@antv/x6-plugin-snapline';
 import { Keyboard } from '@antv/x6-plugin-keyboard';
 import { Clipboard } from '@antv/x6-plugin-clipboard';
 import { History } from '@antv/x6-plugin-history';
-import { Stencil } from '@antv/x6-plugin-stencil';
+// import { Stencil } from '@antv/x6-plugin-stencil';
 import { register } from '@antv/x6-react-shape';
 import { Export } from '@antv/x6-plugin-export';
 import Svg from 'components/svg';
+import { MiniMap } from '@antv/x6-plugin-minimap';
+import Test2 from 'components/test2';
+import { PortManager } from '@antv/x6/lib/model/port';
+import SampleChart from 'components/sampleCharts';
+
+const portsMeta: PortManager.Metadata = {
+  groups: {
+    top: {
+      position: 'top',
+      attrs: {
+        circle: {
+          r: 4,
+          magnet: true,
+          stroke: '#5F95FF',
+          strokeWidth: 1,
+          fill: '#fff',
+          style: {
+            visibility: 'hidden',
+          },
+        },
+      },
+    },
+    right: {
+      position: 'right',
+      attrs: {
+        circle: {
+          r: 4,
+          magnet: true,
+          stroke: '#5F95FF',
+          strokeWidth: 1,
+          fill: '#fff',
+          style: {
+            visibility: 'hidden',
+          },
+        },
+      },
+    },
+    bottom: {
+      position: 'bottom',
+      attrs: {
+        circle: {
+          r: 4,
+          magnet: true,
+          stroke: '#5F95FF',
+          strokeWidth: 1,
+          fill: '#fff',
+          style: {
+            visibility: 'hidden',
+          },
+        },
+      },
+    },
+    left: {
+      position: 'left',
+      attrs: {
+        circle: {
+          r: 4,
+          magnet: true,
+          stroke: '#5F95FF',
+          strokeWidth: 1,
+          fill: '#fff',
+          style: {
+            visibility: 'hidden',
+          },
+        },
+      },
+    },
+  },
+  items: [
+    {
+      group: 'top',
+    },
+    {
+      group: 'right',
+    },
+    {
+      group: 'bottom',
+    },
+    {
+      group: 'left',
+    },
+  ],
+};
 
 export const initDiagram = (ref: HTMLDivElement) => {
   const diagram = new Graph({
     container: ref,
     panning: true,
     mousewheel: true,
+    connecting: {
+      router: 'manhattan',
+      connector: {
+        name: 'rounded',
+        args: {
+          radius: 8,
+        },
+      },
+      anchor: 'center',
+      connectionPoint: 'anchor',
+      allowBlank: false,
+      snap: {
+        radius: 20,
+      },
+      createEdge() {
+        return new Shape.Edge({
+          attrs: {
+            line: {
+              stroke: '#A2B1C3',
+              strokeWidth: 2,
+              targetMarker: {
+                name: 'block',
+                width: 12,
+                height: 8,
+              },
+            },
+          },
+          zIndex: 0,
+        });
+      },
+      validateConnection({ targetMagnet }) {
+        return !!targetMagnet;
+      },
+    },
     background: {
       color: '#fff',
     },
@@ -33,9 +153,10 @@ export const initDiagram = (ref: HTMLDivElement) => {
     .use(
       new Selection({
         enabled: true,
-        showNodeSelectionBox: true,
-        strict: true,
+        multiple: true,
+        rubberband: true,
         movable: true,
+        showNodeSelectionBox: true,
       }),
     )
     .use(
@@ -103,33 +224,22 @@ export const initDiagram = (ref: HTMLDivElement) => {
   register({
     shape: 'test1-node',
     effect: ['type'],
+    ports: { ...portsMeta },
     component: Svg,
   });
   register({
-    shape: 'test2-node',
+    shape: 'test-form-node1',
     effect: ['type'],
-    component: Svg,
+    ports: { ...portsMeta },
+    component: SampleChart,
   });
   register({
-    shape: 'test3-node',
+    shape: 'test-form-node2',
     effect: ['type'],
-    component: Svg,
+    ports: { ...portsMeta },
+    component: Test2,
   });
-  register({
-    shape: 'test4-node',
-    effect: ['type'],
-    component: Svg,
-  });
-  register({
-    shape: 'test5-node',
-    effect: ['type'],
-    component: Svg,
-  });
-  register({
-    shape: 'test6-node',
-    effect: ['type'],
-    component: Svg,
-  });
+
   Graph.registerNode(
     'custom-rect',
     {
@@ -163,45 +273,9 @@ export const getNodeSet1 = (diagram: Graph) => {
     })
     .prop('type', 'test1');
 
-  const test2 = diagram
-    .createNode({
-      width: 100,
-      height: 60,
-      shape: 'test2-node',
-    })
-    .prop('type', 'test2');
-  const test3 = diagram
-    .createNode({
-      width: 100,
-      height: 60,
-      shape: 'test3-node',
-    })
-    .prop('type', 'test3');
-  const test4 = diagram
-    .createNode({
-      width: 100,
-      height: 60,
-      shape: 'test4-node',
-    })
-    .prop('type', 'test4');
-  const test5 = diagram
-    .createNode({
-      width: 100,
-      height: 60,
-      shape: 'test5-node',
-    })
-    .prop('type', 'test5');
-  const test6 = diagram
-    .createNode({
-      width: 100,
-      height: 60,
-      shape: 'test6-node',
-    })
-    .prop('type', 'test6');
-
   const r1 = diagram.createNode({
     shape: 'custom-rect',
-    label: '开始',
+    label: '테스트',
     attrs: {
       body: {
         rx: 20,
@@ -209,131 +283,54 @@ export const getNodeSet1 = (diagram: Graph) => {
       },
     },
   });
-  return [r1, test1, test2, test3, test4, test5, test6];
+  return [r1, test1];
 };
 
 export const getNodeSet2 = (diagram: Graph) => {
-  const aws = diagram.createNode({
-    x: 50,
-    y: 50,
-    width: 50,
-    height: 50,
-    markup: [
-      {
-        tagName: 'path',
-        selector: 'eye1',
-        groupSelector: 'eye',
-        attrs: {
-          d: 'M24.82,48.678c5.422,0,9.832-6.644,9.832-14.811c0-8.165-4.41-14.809-9.832-14.809s-9.833,6.644-9.833,14.809C14.987,42.034,19.399,48.678,24.82,48.678z',
-        },
-      },
-      {
-        tagName: 'path',
-        selector: 'eye2',
-        groupSelector: 'eye',
-        attrs: {
-          d: 'M71.606,48.678c5.422,0,9.833-6.644,9.833-14.811c0-8.165-4.411-14.809-9.833-14.809c-5.421,0-9.831,6.644-9.831,14.809C61.775,42.034,66.186,48.678,71.606,48.678z',
-        },
-      },
-      {
-        tagName: 'path',
-        selector: 'lip',
-        attrs: {
-          d: 'M95.855,55.806c-0.6-0.605-1.516-0.77-2.285-0.4C81.232,61.29,65.125,64.53,48.214,64.53c-16.907,0-33.015-3.24-45.354-9.123c-0.77-0.367-1.688-0.205-2.284,0.4c-0.599,0.606-0.747,1.526-0.369,2.29c5.606,11.351,25.349,19.277,48.008,19.277c22.668,0,42.412-7.929,48.012-19.279C96.603,57.332,96.453,56.411,95.855,55.806z',
-        },
-      },
-    ],
-    attrs: {
-      lip: {
-        fill: '#E0A31A',
-      },
-      eye: {
-        fill: '#730000',
-      },
-    },
+  const test1 = diagram.addNode({
+    width: 420,
+    height: 340,
+    shape: 'test-form-node1',
   });
-  const aws2 = diagram.createNode({
-    x: 50,
-    y: 50,
-    width: 50,
-    height: 50,
-    markup: [
-      {
-        tagName: 'path',
-        selector: 'eye1',
-        groupSelector: 'eye',
-        attrs: {
-          d: 'M24.82,48.678c5.422,0,9.832-6.644,9.832-14.811c0-8.165-4.41-14.809-9.832-14.809s-9.833,6.644-9.833,14.809C14.987,42.034,19.399,48.678,24.82,48.678z',
-        },
-      },
-      {
-        tagName: 'path',
-        selector: 'eye2',
-        groupSelector: 'eye',
-        attrs: {
-          d: 'M71.606,48.678c5.422,0,9.833-6.644,9.833-14.811c0-8.165-4.411-14.809-9.833-14.809c-5.421,0-9.831,6.644-9.831,14.809C61.775,42.034,66.186,48.678,71.606,48.678z',
-        },
-      },
-      {
-        tagName: 'path',
-        selector: 'lip',
-        attrs: {
-          d: 'M95.855,55.806c-0.6-0.605-1.516-0.77-2.285-0.4C81.232,61.29,65.125,64.53,48.214,64.53c-16.907,0-33.015-3.24-45.354-9.123c-0.77-0.367-1.688-0.205-2.284,0.4c-0.599,0.606-0.747,1.526-0.369,2.29c5.606,11.351,25.349,19.277,48.008,19.277c22.668,0,42.412-7.929,48.012-19.279C96.603,57.332,96.453,56.411,95.855,55.806z',
-        },
-      },
-    ],
-    attrs: {
-      lip: {
-        fill: '#E0A31A',
-      },
-      eye: {
-        fill: '#730000',
-      },
-    },
-  });
-  const aws3 = diagram.createNode({
-    x: 50,
-    y: 50,
-    width: 50,
-    height: 50,
-    markup: [
-      {
-        tagName: 'path',
-        selector: 'eye1',
-        groupSelector: 'eye',
-        attrs: {
-          d: 'M24.82,48.678c5.422,0,9.832-6.644,9.832-14.811c0-8.165-4.41-14.809-9.832-14.809s-9.833,6.644-9.833,14.809C14.987,42.034,19.399,48.678,24.82,48.678z',
-        },
-      },
-      {
-        tagName: 'path',
-        selector: 'eye2',
-        groupSelector: 'eye',
-        attrs: {
-          d: 'M71.606,48.678c5.422,0,9.833-6.644,9.833-14.811c0-8.165-4.411-14.809-9.833-14.809c-5.421,0-9.831,6.644-9.831,14.809C61.775,42.034,66.186,48.678,71.606,48.678z',
-        },
-      },
-      {
-        tagName: 'path',
-        selector: 'lip',
-        attrs: {
-          d: 'M95.855,55.806c-0.6-0.605-1.516-0.77-2.285-0.4C81.232,61.29,65.125,64.53,48.214,64.53c-16.907,0-33.015-3.24-45.354-9.123c-0.77-0.367-1.688-0.205-2.284,0.4c-0.599,0.606-0.747,1.526-0.369,2.29c5.606,11.351,25.349,19.277,48.008,19.277c22.668,0,42.412-7.929,48.012-19.279C96.603,57.332,96.453,56.411,95.855,55.806z',
-        },
-      },
-    ],
-    attrs: {
-      lip: {
-        fill: '#E0A31A',
-      },
-      eye: {
-        fill: '#730000',
-      },
-    },
-  });
-  return [aws, aws2, aws3];
+  return [test1];
 };
 
-export const initStencil = (diagram: Graph) => {
+export const portShowEvent = (diagram: Graph) => {
+  const showPorts = (ports: any, show: boolean) => {
+    for (let i = 0, len = ports.length; i < len; i += 1) {
+      ports[i].style.visibility = show ? 'visible' : 'hidden';
+    }
+  };
+
+  diagram.on('node:mouseenter', () => {
+    const container = document.getElementById('graph-container')!;
+    const ports = container.querySelectorAll(
+      '.x6-port-body',
+    ) as NodeListOf<SVGElement>;
+    showPorts(ports, true);
+  });
+
+  diagram.on('node:mouseleave', () => {
+    const container = document.getElementById('graph-container')!;
+    const ports = container.querySelectorAll(
+      '.x6-port-body',
+    ) as NodeListOf<SVGElement>;
+    showPorts(ports, false);
+  });
+};
+
+export const initMinimap = (diagram: Graph) => {
+  const minimap = document.getElementById('minimap');
+  if (!minimap) return;
+  diagram.use(
+    new MiniMap({
+      container: minimap,
+      scalable: true,
+    }),
+  );
+};
+
+/* export const initStencil = (diagram: Graph) => {
   const stencil = new Stencil({
     title: 'List',
     target: diagram,
@@ -345,10 +342,6 @@ export const initStencil = (diagram: Graph) => {
         title: 'group1',
         name: 'group1',
       },
-      {
-        title: 'group2',
-        name: 'group2',
-      },
     ],
     layoutOptions: {
       columns: 2,
@@ -357,10 +350,9 @@ export const initStencil = (diagram: Graph) => {
     },
   });
   const nodeset1 = getNodeSet1(diagram);
-  const nodeset2 = getNodeSet2(diagram);
+  getNodeSet2(diagram);
   // const nodeset2 = getNodeSet2(diagram);
   stencil.load(nodeset1, 'group1');
-  stencil.load(nodeset2, 'group2');
   // stencil.load(nodeset2, 'group2');
   document.getElementById('stencil')!.appendChild(stencil.container);
-};
+}; */
