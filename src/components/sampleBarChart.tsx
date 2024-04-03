@@ -2,7 +2,7 @@
 import Chart from 'react-apexcharts';
 
 const chartConfig = {
-  type: 'line',
+  type: 'bar',
   height: 240,
   series: [
     {
@@ -23,12 +23,11 @@ const chartConfig = {
       enabled: false,
     },
     colors: ['#020617'],
-    stroke: {
-      lineCap: 'round',
-      curve: 'smooth',
-    },
-    markers: {
-      size: 0,
+    plotOptions: {
+      bar: {
+        columnWidth: '40%',
+        borderRadius: 2,
+      },
     },
     xaxis: {
       axisTicks: {
@@ -90,9 +89,9 @@ const chartConfig = {
   },
 };
 
-export default function SampleChart() {
+export default function SampleBarChart() {
   return (
-    <div className="bottom-2 h-full w-full overflow-hidden bg-white border-2">
+    <div className="bottom-2 h-full w-full overflow-hidden border-2 bg-white">
       <Chart {...(chartConfig as any)} />
     </div>
   );

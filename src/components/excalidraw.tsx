@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Excalidraw, Footer, MainMenu, Sidebar } from '@excalidraw/excalidraw';
-import { Excali }
+// import { Excalidraw, Footer, MainMenu, Sidebar } from '@excalidraw/excalidraw';
 import { useEffect, useState } from 'react';
 // import Library from '@excalidraw/excalidraw/types/data/library';
+import { Excalidraw, Footer, MainMenu, Sidebar } from '@excalidraw/excalidraw';
 import LibraryItems from '../assets/sampleLibrary.json';
 
 const UIOptions = {
@@ -30,8 +30,6 @@ function Diagram() {
       <div className="absolute z-10">테스트</div>
       <Excalidraw
         langCode="ko-KR"
-        gridModeEnabled
-        theme="dark"
         UIOptions={UIOptions}
         initialData={{
           libraryItems: libraryItems?.libraryItems,

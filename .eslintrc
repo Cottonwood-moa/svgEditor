@@ -58,5 +58,6 @@
     "tsconfig.json",
     "webpack.config.js",
     "tailwind.config.js",
+    "@excalidraw/**", // "test" 폴더와 그 하위의 모든 파일을 린트에서 제외합니다.
   ],
 }
