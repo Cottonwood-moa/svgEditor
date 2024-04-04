@@ -2,7 +2,13 @@
 import * as React from 'react';
 
 const Test3 = (props: any) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={45} height={45} {...props}>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={45}
+    height={45}
+    viewBox="9 8.98 27 27.02"
+    {...props}
+  >
     <defs>
       <style>
         {

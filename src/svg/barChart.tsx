@@ -6,6 +6,7 @@ const BarChart = (props: any) => (
     xmlns="http://www.w3.org/2000/svg"
     width={602.261}
     height={342.162}
+    viewBox="0 0 602.261 342.162"
     {...props}
   >
     <defs>

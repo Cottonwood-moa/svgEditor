@@ -17,6 +17,7 @@ import ReactFlow, {
   BackgroundVariant,
   Node,
   useReactFlow,
+  SelectionMode,
 } from 'reactflow';
 import ResizeNode from 'utils/flow-meta/ResizeNode';
 import SvgNode from 'utils/flow-meta/SvgNode';
@@ -59,6 +60,7 @@ const initialEdges = [{ id: 'e1-2', source: '1', target: '2' }];
 
 let id = 0;
 const getId = () => `dndnode_${id++}`;
+const panOnDrag = [1, 2];
 
 export default function DiagramTest() {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
@@ -66,7 +68,7 @@ export default function DiagramTest() {
   const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
   const reactFlow = useReactFlow();
 
-  const getObject = () => {
+  const getObjectForExport = () => {
     const resEdges = cloneDeep(reactFlow.getEdges());
     const resNodes = cloneDeep(reactFlow.getNodes()).map((node) => ({
       ...node,
@@ -82,7 +84,7 @@ export default function DiagramTest() {
   };
 
   const copyClipBoard = () => {
-    navigator.clipboard.writeText(JSON.stringify(getObject()));
+    navigator.clipboard.writeText(JSON.stringify(getObjectForExport()));
     alert('Copied');
     console.log('하이킥 reactFlow', reactFlow);
   };
@@ -132,10 +134,9 @@ export default function DiagramTest() {
     },
     [reactFlowInstance],
   );
-
   useEffect(() => {
-    console.log('하이킥 initalNodes', nodes);
-  }, [nodes]);
+    // reactFlow.onSele;
+  }, []);
 
   return (
     <>
@@ -164,12 +165,8 @@ export default function DiagramTest() {
               >
                 Copy
               </div>
-              {/* <div
-                className="mr-5 cursor-pointer text-sm font-bold hover:text-gray-900"
-                // onClick={enableRubberBand}
-              >
-                ⏹️
-              </div>
+
+              {/*
               <div
                 className="mr-5 cursor-pointer text-sm font-bold hover:text-gray-900"
                 // onClick={appendSvgNode}
@@ -215,6 +212,10 @@ export default function DiagramTest() {
           onConnect={onConnect}
           onDrop={onDrop}
           onDragOver={onDragOver}
+          panOnScroll
+          selectionOnDrag
+          panOnDrag={panOnDrag}
+          selectionMode={SelectionMode.Partial}
           fitView
         >
           <Controls />

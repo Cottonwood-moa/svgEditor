@@ -24,7 +24,6 @@ import ReactFlow, {
 import ChartNode from 'utils/flow-meta/ChartNode';
 import ResizeNode from 'utils/flow-meta/ResizeNode';
 import SvgNode from 'utils/flow-meta/SvgNode';
-import Test4 from 'svg/test4';
 
 const ResultDiagram = () => {
   const [initData, setInitData] = useState<any>();
@@ -41,7 +40,6 @@ const ResultDiagram = () => {
   };
 
   const [open, setOpen] = useState(false);
-
   const handleOpen = () => setOpen(!open);
   const handleConfirm = () => {
     handleOpen();
@@ -163,7 +161,6 @@ const ResultDiagram = () => {
           onPointerEnterCapture={() => {}}
           onPointerLeaveCapture={() => {}}
         >
-          <Test4 />
           <Button
             variant="text"
             color="red"

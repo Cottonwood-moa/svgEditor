@@ -2,13 +2,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { Tooltip } from '@material-tailwind/react';
-import { ReactComponent as LineChart } from '../svg/lineChart.svg';
-import { ReactComponent as BarChart } from '../svg/barChart.svg';
-import { ReactComponent as Test1 } from '../svg/test1.svg';
-import { ReactComponent as Test2 } from '../svg/test2.svg';
-import { ReactComponent as Test3 } from '../svg/test3.svg';
-import { ReactComponent as Test4 } from '../svg/test4.svg';
-import { ReactComponent as Test5 } from '../svg/test5.svg';
+import MachineryPart from '../svg/parts';
+import LineChart from '../svg/lineChart';
+import BarChart from '../svg/barChart';
+import Test1 from '../svg/test1';
+import Test2 from '../svg/test2';
+import Test3 from '../svg/test3';
+import Test4 from '../svg/test4';
+import Test5 from '../svg/test5';
+import Test6 from '../svg/test6';
 
 export default function NodeDragList() {
   const onDragStart = (event: any, data: any) => {
@@ -85,7 +87,7 @@ export default function NodeDragList() {
           onDragStart={(event) =>
             onDragStart(event, {
               type: 'svg',
-              data: { type: 'test4' },
+              data: { type: 'test4', value: false },
               zIndex: 10,
             })
           }
@@ -105,7 +107,28 @@ export default function NodeDragList() {
           <Test5 className="h-8 w-8" />
         </div>
       </Tooltip>
-      {/*  */}
+      <Tooltip content="부품 1-6" placement="right">
+        <div
+          className="dndnode pointer m-auto mb-2 flex h-fit w-fit items-center justify-center rounded-full bg-cyan-700 bg-opacity-20 p-3"
+          onDragStart={(event) =>
+            onDragStart(event, { type: 'svg', data: { type: 'test6' } })
+          }
+          draggable
+        >
+          <Test6 className="h-8 w-8" />
+        </div>
+      </Tooltip>
+      <Tooltip content="부품 1-7" placement="right">
+        <div
+          className="dndnode pointer m-auto mb-2 flex h-fit w-fit items-center justify-center rounded-full bg-cyan-700 bg-opacity-20 p-3"
+          onDragStart={(event) =>
+            onDragStart(event, { type: 'svg', data: { type: 'test7' } })
+          }
+          draggable
+        >
+          <MachineryPart className="h-8 w-8" />
+        </div>
+      </Tooltip>
       <Tooltip content="테스트용" placement="right">
         <div
           className="dndnode pointer m-auto mb-2 flex h-fit w-fit items-center justify-center rounded-full bg-cyan-700 bg-opacity-20 p-3"

@@ -6,6 +6,7 @@ const LineChart = (props: any) => (
     xmlns="http://www.w3.org/2000/svg"
     width={601.863}
     height={342.133}
+    viewBox="0 0 601.863 342.133"
     {...props}
   >
     <defs>

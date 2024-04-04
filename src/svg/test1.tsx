@@ -6,6 +6,7 @@ const Test1 = (props: any) => (
     xmlns="http://www.w3.org/2000/svg"
     width={120.69}
     height={89.815}
+    viewBox="0 0 120.69 89.815"
     {...props}
   >
     <defs>
