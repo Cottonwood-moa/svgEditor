@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import SampleBarChart from 'components/sampleBarChart';
-import SampleChart from 'components/sampleCharts';
+import SampleBarChart from 'components/charts/sampleBarChart';
+import SampleChart from 'components/charts/sampleCharts';
 import { memo, useEffect, useState } from 'react';
 import { Handle, Position, NodeResizer } from 'reactflow';
 

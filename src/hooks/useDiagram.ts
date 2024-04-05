@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { Graph } from '@antv/x6';
+/* import { Graph } from '@antv/x6';
 import { useEffect, useState } from 'react';
 import { initDiagram } from 'utils/fabric/diagram';
 
@@ -18,7 +17,6 @@ const useDiagram = (
     setGraph(diagram);
   }, [containerRef]);
 
-  /* 테스트용 데이터 */
   useEffect(() => {
     if (!graph) {
       return;
@@ -29,4 +27,4 @@ const useDiagram = (
   return { diagram: graph };
 };
 
-export default useDiagram;
+export default useDiagram; */

@@ -1,14 +1,12 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { memo, useEffect, useState } from 'react';
 import { NodeResizer, Handle, Position, useReactFlow } from 'reactflow';
-import TestSvg1 from '../../svg/emptyAreaTest';
-import TestSvg2 from '../../svg/test2';
-import TestSvg3 from '../../svg/test3';
-import TestSvg4 from '../../svg/test4';
-import TestSvg5 from '../../svg/test5';
-import TestSvg6 from '../../svg/test6';
-import MachineryPart from '../../svg/parts';
+import TestSvg1 from '../svg/emptyAreaTest';
+import TestSvg2 from '../svg/test2';
+import TestSvg3 from '../svg/test3';
+import TestSvg4 from '../svg/test4';
+import TestSvg5 from '../svg/test5';
+import TestSvg6 from '../svg/test6';
+import MachineryPart from '../svg/parts';
 
 /* RootObject {
   id: string;

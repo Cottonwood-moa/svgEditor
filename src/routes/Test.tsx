@@ -1,11 +1,11 @@
 // import { useNavigate } from 'react-router-dom';
-import DiagramTest from 'components/svgCanvas';
+import Diagram from 'components/Diagram';
 import { ReactFlowProvider } from 'reactflow';
 
 function Test() {
   return (
     <ReactFlowProvider>
-      <DiagramTest />
+      <Diagram />
     </ReactFlowProvider>
   );
 }

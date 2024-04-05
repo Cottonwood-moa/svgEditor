@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react';
 
-const Test1 = (props: any) => (
+const EmptyAreaTest = (props: any) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={120.69}
@@ -116,4 +115,4 @@ const Test1 = (props: any) => (
     </text>
   </svg>
 );
-export default Test1;
+export default EmptyAreaTest;

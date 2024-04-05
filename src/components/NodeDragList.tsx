@@ -1,16 +1,14 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { Tooltip } from '@material-tailwind/react';
-import MachineryPart from '../svg/parts';
-import LineChart from '../svg/lineChart';
-import BarChart from '../svg/barChart';
-import Test1 from '../svg/test1';
-import Test2 from '../svg/test2';
-import Test3 from '../svg/test3';
-import Test4 from '../svg/test4';
-import Test5 from '../svg/test5';
-import Test6 from '../svg/test6';
+import MachineryPart from './svg/parts';
+import LineChart from './svg/lineChart';
+import BarChart from './svg/barChart';
+import Test1 from './svg/test1';
+import Test2 from './svg/test2';
+import Test3 from './svg/test3';
+import Test4 from './svg/test4';
+import Test5 from './svg/test5';
+import Test6 from './svg/test6';
 
 export default function NodeDragList() {
   const onDragStart = (event: any, data: any) => {

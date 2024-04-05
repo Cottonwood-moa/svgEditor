@@ -1,5 +1,3 @@
-/* eslint-disable react/button-has-type */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Dialog,
   DialogHeader,

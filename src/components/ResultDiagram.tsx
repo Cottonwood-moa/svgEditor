@@ -1,9 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable no-plusplus */
-/* eslint-disable no-param-reassign */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Button,
   Dialog,
@@ -21,9 +15,9 @@ import ReactFlow, {
   useNodesState,
   useReactFlow,
 } from 'reactflow';
-import ChartNode from 'utils/flow-meta/ChartNode';
-import ResizeNode from 'utils/flow-meta/ResizeNode';
-import SvgNode from 'utils/flow-meta/SvgNode';
+import ChartNode from 'components/flowNode/ChartNode';
+import ResizeNode from 'components/flowNode/ResizeNode';
+import SvgNode from 'components/flowNode/SvgNode';
 
 const ResultDiagram = () => {
   const [initData, setInitData] = useState<any>();

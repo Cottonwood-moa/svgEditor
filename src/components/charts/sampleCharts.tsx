@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import Chart from 'react-apexcharts';
 
 const chartConfig = {
@@ -92,7 +91,7 @@ const chartConfig = {
 
 export default function SampleChart() {
   return (
-    <div className="bottom-2 h-full w-full overflow-hidden bg-white border-2">
+    <div className="bottom-2 h-full w-full overflow-hidden border-2 bg-white">
       <Chart {...(chartConfig as any)} />
     </div>
   );
